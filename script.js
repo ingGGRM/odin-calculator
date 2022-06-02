@@ -18,6 +18,7 @@ function genCalculator() {
         numButton.textContent = numbers[i];
         numButton.classList.add('button');
         numButtons.appendChild(numButton);
+        numButton.addEventListener('click', buttonClick);
     }
 
     for(let i = 0; i < functions.length; i++) { // 4 button element creation for math functions (+, -, *, /)
@@ -26,4 +27,8 @@ function genCalculator() {
         funcButton.classList.add('button');
         funcButtons.appendChild(funcButton);
     }
+}
+
+function buttonClick() {
+    console.log(this.textContent);
 }
