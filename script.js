@@ -3,8 +3,8 @@ const numButtons = document.getElementById("num-buttons");
 const funcButtons = document.getElementById("func-buttons");
 
 // const arrays for each button label
-const numbers = ['7', '8', '9', '4', '5', '6', '1', '2', '3', '.', '0']
-const functions = ['AC', '/', 'X', '-', '+', '=']
+const numbers = ['7', '8', '9', '4', '5', '6', '1', '2', '3', '·', '0']
+const functions = ['AC', '/', 'x', '-', '+', '=']
 
 /* init function called on page load */
 function init() {
@@ -18,6 +18,7 @@ function genCalculator() {
         numButton.textContent = numbers[i];
         numButton.classList.add('button');
         if(numbers[i] == '0') numButton.classList.add('zero');
+        if(numbers[i] == '0' || numbers[i] == '.') numButton.classList.add('zero-dot');
         numButtons.appendChild(numButton);
         numButton.addEventListener('click', buttonClick);
     }

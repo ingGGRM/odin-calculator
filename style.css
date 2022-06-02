@@ -19,6 +19,7 @@ body {
     justify-content: center;
     padding: 10px;
     margin: auto;
+    border-radius: 10px;
 }
 
 #screen {
@@ -33,6 +34,8 @@ body {
     font-size: 30px;
     text-align: right;
     vertical-align: middle;
+    box-shadow: inset 0px 2px 2px rgb(42, 42, 43), 2px 0px 2px rgb(42, 42, 43), -2px 0px 2px rgb(42, 42, 43);
+    border-radius: 3px;
 }
 
 #buttons {
@@ -48,19 +51,23 @@ body {
 #num-buttons {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: [num7-9] .7fr [num4-6] .7fr [num1-3] .7fr [dotZero] .5fr;
     column-gap: 5px;
     row-gap: 5px;
 }
 
 #func-buttons {
     display: grid;
+    grid-template-rows: [AC] .7fr [DIV] .5fr [MUL] .5fr [SUB] .5fr [ADD] .5fr [EQUAL] .7fr;
     row-gap: 5px;
 }
 
 .button {
-    box-shadow: 2px 2px 2px rgb(42, 42, 43);
+    box-shadow: 0px 3px 2px rgb(42, 42, 43);
     cursor: pointer;
-    font-size: 2em;
+    font-size: 20px;
+    border-radius: 20px;
+    border-width: 1px;
 }
 
 .zero {
