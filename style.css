@@ -57,10 +57,14 @@ body {
     row-gap: 5px;
 }
 
-button {
+.button {
     box-shadow: 2px 2px 2px rgb(42, 42, 43);
     cursor: pointer;
     font-size: 2em;
+}
+
+.zero {
+    grid-column: 2 / 4;
 }
 
 
