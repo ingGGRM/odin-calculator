@@ -7,10 +7,11 @@ const numbers = ['7', '8', '9', '4', '5', '6', '1', '2', '3', '.', '0'] //'·'
 const functions = ['AC', '/', 'x', '-', '+', '=']
 
 // variables
-let num1, num2, operator, result, concat;
+let num1, num2, operator, result, concat, dot;
 
 /* init function called on page load */
 function init() {
+    dot = false;
     concat = true;
     operator = '';
     genCalculator();
@@ -40,6 +41,9 @@ function genCalculator() {
 /* button clicks listener functions */
 function buttonClick() {
     if(numbers.includes(this.textContent) && screen.textContent.length < 10) {
+        if(dot && this.textContent == '.') return;
+        else if(!dot && this.textContent == '.') dot = true;
+
         if(screen.textContent != 0 && concat) {
             screen.textContent += this.textContent;
         } else {
@@ -54,6 +58,7 @@ function buttonClick() {
                     num1 = parseFloat(screen.textContent);
                     operator = this.textContent;
                     concat = false;
+                    dot = false;
                 } else {
                     num2 = parseFloat(screen.textContent);
                     result = calc(num1, num2, operator);
@@ -62,6 +67,7 @@ function buttonClick() {
                     num1 = result;
                     operator = this.textContent;
                     concat = false;
+                    dot = false;
                 }
                 return;
             } else if(this.textContent == '=') {
@@ -71,6 +77,7 @@ function buttonClick() {
                 concat = false;
                 num1, num2, result = 0;
                 operator = '';
+                dot = false;
                 return;
             }
         }
@@ -92,4 +99,5 @@ function ac() {
     num1, num2, result = 0;
     operator = '';
     concat = false;
+    dot = false;
 }
