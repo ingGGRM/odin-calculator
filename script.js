@@ -62,7 +62,7 @@ function buttonClick() {
                 } else {
                     num2 = parseFloat(screen.textContent);
                     result = calc(num1, num2, operator);
-                    screen.textContent = result;
+                    screen.textContent = (result.toString().length > 9) ? result.toString().slice(0,10) : result.toString();
 
                     num1 = result;
                     operator = this.textContent;
@@ -73,7 +73,7 @@ function buttonClick() {
             } else if(this.textContent == '=') {
                 num2 = parseFloat(screen.textContent);
                 result = calc(num1, num2, operator);
-                screen.textContent = result;
+                screen.textContent = (result.toString().length > 9) ? result.toString().slice(0,10) : result.toString();
                 concat = false;
                 num1, num2, result = 0;
                 operator = '';
