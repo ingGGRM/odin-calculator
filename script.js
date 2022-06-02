@@ -3,11 +3,16 @@ const numButtons = document.getElementById("num-buttons");
 const funcButtons = document.getElementById("func-buttons");
 
 // const arrays for each button label
-const numbers = ['7', '8', '9', '4', '5', '6', '1', '2', '3', '·', '0']
+const numbers = ['7', '8', '9', '4', '5', '6', '1', '2', '3', '.', '0'] //'·'
 const functions = ['AC', '/', 'x', '-', '+', '=']
+
+// variables
+let num1, num2, operator, result, concat;
 
 /* init function called on page load */
 function init() {
+    concat = true;
+    operator = '';
     genCalculator();
 }
 
@@ -32,6 +37,59 @@ function genCalculator() {
     }
 }
 
+/* button clicks listener functions */
 function buttonClick() {
-    console.log(this.textContent);
+    if(numbers.includes(this.textContent) && screen.textContent.length < 10) {
+        if(screen.textContent != 0 && concat) {
+            screen.textContent += this.textContent;
+        } else {
+            screen.textContent = this.textContent;
+            concat = true;
+        }
+    } else if(!numbers.includes(this.textContent)) {
+        if(this.textContent == 'AC') ac();
+        else if(screen.textContent != '0' && screen.textContent != '.') {
+            if(functions.slice(1,5).includes(this.textContent)) {
+                if(operator == '') {
+                    num1 = parseFloat(screen.textContent);
+                    operator = this.textContent;
+                    concat = false;
+                } else {
+                    num2 = parseFloat(screen.textContent);
+                    result = calc(num1, num2, operator);
+                    screen.textContent = result;
+
+                    num1 = result;
+                    operator = this.textContent;
+                    concat = false;
+                }
+                return;
+            } else if(this.textContent == '=') {
+                num2 = parseFloat(screen.textContent);
+                result = calc(num1, num2, operator);
+                screen.textContent = result;
+                concat = false;
+                num1, num2, result = 0;
+                operator = '';
+                return;
+            }
+        }
+    }
+}
+
+/* calculator function */
+function calc(x, y, func) {
+    if(func == '+') return x + y; // returns x + y
+    else if(func == '-') return x - y; // returns x - y
+    else if(func == 'x') return x * y; // returns x * y
+    else if(func == '/') return x / y; // returns x / y
+    else return 0;
+}
+
+/* clear calculator function */
+function ac() {
+    screen.textContent = 0;
+    num1, num2, result = 0;
+    operator = '';
+    concat = false;
 }
